@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>工人棚</title>
+		<link rel="stylesheet" type="text/css" href="css/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/dropload.css"/>
+	</head>
+	<style type="text/css">
+		.weui-cells{
+			margin-top:0;
+		}
+		.pop{
+			padding: 1rem 0;
+		    width: 90%;
+		    margin: 0 auto;
+		    margin-top: 7rem;
+		    border-radius: 10px;
+		}
+		.pop:before{
+			border-top: 0;
+		}
+		.pop:after{
+			border-bottom: 0;
+		}
+		.pop a{
+			padding: 0;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">投/收记录</h1>
+		</header>
+		<div class="popview" style="display: none;position: fixed;top: 0;left: 0;z-index: 11;background: rgba(147,147,147,0.7);height: 100vh;width: 100%;">
+			<div class="weui-cells weui-cells_form pop">
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">班组:</label></div>
+			        <div class="weui-cell__bd" id="workType">
+			            张珊
+			        </div>
+			    </div>
+			   <a class="weui-cell weui-cell_access" href="javascript:;" id="publicUserNameA">
+					<div class="weui-cell">
+				        <div class="weui-cell__hd"><label class="weui-label">发布人:</label></div>
+				        <div class="weui-cell__bd" style="color: #0BB20C;" id="publicUserName">
+				            张珊
+				        </div>
+				    </div>
+				</a>
+				<a class="weui-cell weui-cell_access" href="javascript:;" id="postUserNameA">
+					<div class="weui-cell">
+				        <div class="weui-cell__hd"><label class="weui-label">投递人:</label></div>
+				        <div class="weui-cell__bd" style="color: #0BB20C;" id="postUserName">
+				            张珊
+				        </div>
+				    </div>
+				</a>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">时间:</label></div>
+			        <div class="weui-cell__bd" id="postTime">
+			            张珊
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">价格:</label></div>
+			        <div class="weui-cell__bd" id="price">
+			            张珊
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">工作地点:</label></div>
+			        <div class="weui-cell__bd" id="address">
+			            张珊
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">联系方式:</label></div>
+			        <div class="weui-cell__bd" id="contact">
+			            张珊
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">工作时间:</label></div>
+			        <div class="weui-cell__bd" id="workTime">
+			            张珊
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">备注:</label></div>
+			        <div class="weui-cell__bd" id="remark">
+			            张珊
+			        </div>
+			    </div>
+			</div>
+		</div>
+		<div class="mui-content">
+			<div class="mui-input-row mui-search" style="margin-top: 2rem;">
+		    	<span class="mui-icon mui-icon-search" style="float: left;padding: .2rem .3rem;"></span>
+		        <input type="search" class="mui-input-clear" id="bz" style="width: 10rem;" readonly="readonly" placeholder="请选择班组">
+	        	<input type="search" class="mui-input-clear" id="date" style="width: 9rem;" readonly="readonly" placeholder="请选择日期">
+		    </div>
+			<div class="count-wrapper" style="overflow: auto;height: 28rem;margin:1rem 10px;">
+				<div class="listview" style="background: white;">
+		            <!-- <a class="weui-cell weui-cell_access listview" href="javascript:;">
+		                <div class="weui-cell__bd" style="text-align: center;">
+		                    <div class="weui-cell__bd" style="text-align: center;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;">
+			                    <div class="weui-cell__bd" style="text-align: center;">
+				                    <p>班组:钢筋班组</p>
+				                </div>
+				                <div class="weui-cell__bd" style="text-align: center;">
+				                    <p>发布人：张珊</p>
+				                </div>
+			                </div>
+			                <div class="weui-cell__bd" style="text-align: center;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;">
+			                    <div class="weui-cell__bd" style="text-align: center;">
+				                    <p>投递人：张珊</p>
+				                </div>
+				                <div class="weui-cell__bd" style="text-align: center;">
+				                    <p>时间：2013-01-01</p>
+				                </div>
+			                </div>
+		                </div>
+		            </a> -->
+					
+				</div>
+			</div>
+		</div>
+	<script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/dropload.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/srRecord.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

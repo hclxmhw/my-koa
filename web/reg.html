@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>工人棚</title>
+		<link rel="stylesheet" type="text/css" href="css/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	</head>
+	<style type="text/css">
+		/*.weui-cell{
+			padding: 20px 15px;
+		}*/
+		.weui-vcode-img{
+			width: 7rem;
+		}
+		.weui-cells:before{
+			border-top:0;
+		}
+		.weui-cells:after{
+			border-bottom:0;
+		}
+		.checkbox:before{
+			border-top:0;
+		}
+		.disable{
+			color:gray;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content">
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cells weui-cells_checkbox">
+					<div style="display: -webkit-box;display: -webkit-flex;display: flex;">
+					    <label class="weui-cell weui-check__label weui-cell__bd" for="1">
+					        <div class="weui-cell__hd">
+					            <input type="radio" class="weui-check" name="checkbox1" id="1" checked="checked">
+					            <i class="weui-icon-checked"></i>
+					        </div>
+					        <div class="weui-cell__bd">
+					            <p>工人</p>
+					        </div>
+					    </label>
+					    <label class="weui-cell weui-check__label weui-cell__bd checkbox" for="2">
+					        <div class="weui-cell__hd">
+					            <input type="radio" name="checkbox1" class="weui-check" id="2">
+					            <i class="weui-icon-checked"></i>
+					        </div>
+					        <div class="weui-cell__bd">
+					            <p>班组</p>
+					        </div>
+					    </label>
+						
+					</div>
+				</div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+			        <div class="weui-cell__bd">
+			            <input class="weui-input" type="number" id="mobile" pattern="[0-9]*" placeholder="请输入手机号"/>
+			        </div>
+			    </div>
+			    <div class="weui-cell weui-cell_vcode">
+			        <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+			        <div class="weui-cell__bd">
+			            <input class="weui-input" pattern="[0-9a-zA-z]*" id="ext_dxyzm" placeholder="请输入验证码"/>
+			        </div>
+			        <div class="weui-cell__ft">
+			            <img class="weui-vcode-img" id="picYzm" src="www.baidu.com" />
+			        </div>
+			    </div>
+			    <div class="weui-cell weui-cell_vcode">
+			        <div class="weui-cell__hd">
+			            <label class="weui-label">短信验证码</label>
+			        </div>
+			        <div class="weui-cell__bd">
+			            <input class="weui-input" type="tel" id="ext_tpyzm" placeholder="请输入短信验证码">
+			        </div>
+			        <div class="weui-cell__ft">
+			            <a href="javascript:;" class="weui-vcode-btn" style="width:7rem;text-align:center;padding:0;" id="sjYzm">获取验证码</a>
+			        </div>
+			    </div>
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">设置密码</label></div>
+			        <div class="weui-cell__bd">
+			            <input class="weui-input" type="password" id="loginPwd" pattern="[0-9]*" placeholder="请输入密码"/>
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+			        <div class="weui-cell__bd">
+			            <input class="weui-input" type="password" id="loginPwd2" pattern="[0-9]*" placeholder="请输入密码"/>
+			        </div>
+			    </div>
+			</div>
+			<a href="javascript:;" class="weui-btn weui-btn_primary" id="register" style="margin: 2rem .5rem;">注册</a>
+		</div>
+		<script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/reg.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

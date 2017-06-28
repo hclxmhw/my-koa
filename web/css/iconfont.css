@@ -1,0 +1,178 @@
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.ttf?t=1493274639197') format('truetype') /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-iconfonttianjiazhiwei:before { 
+	content: "\e620"; 
+	position: absolute;
+	top:4px;
+	left:13px;
+}
+
+.icon-jilu:before { 
+	content: "\e604"; 
+	position: absolute;
+	top:5px;
+	left:15px;
+}
+
+.icon-sourencai:before { 
+	content: "\e667"; 
+	position: absolute;
+	top:5px;
+	left:14px;
+}
+
+.icon-fabulishi:before { 
+	content: "\e6a6"; 
+	position: absolute;
+	top:6px;
+	left:13px;
+}
+
+.icon-wodexinxi:before { 
+	content: "\e6b9";
+	position: absolute;
+	top:5px;
+	left:12px;
+}
+
+.icon-wodejianli:before { 
+	content: "\e660";
+	position: absolute;
+	top:8px;
+	left:12.5px;
+}
+
+.mui-content span{
+	font-size : 12px;
+	left: -5px;
+}
+
+.home_nav {
+    overflow: hidden;
+    height: 172px;
+    line-height: 35px;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 8px;
+    padding: 15px 14px 0;
+    background-color: #fff;
+}
+.home_nav .in {
+    position: relative;
+    margin-right: 50px;
+}
+.home_nav p {
+    position: absolute;
+    float: left;
+    width: 50px;
+    height: 86px;
+}
+.home_nav a {
+    position: relative;
+    display: block;
+}
+.home_nav a, .home_nav a:before, .search .search_but:after, .search_con .more span:after, .search_con .close, .qklink em, .lbox .nav:before, .Ls .rec:after, .Ls .link:after, .Bx .hot:after, .htj .more:after, #suspend .search_but:after {
+    background: url(http://img01.51jobcdn.com/im/mobile/m/home_icons_20161216.png) no-repeat;
+    -webkit-background-size: 300px auto;
+    -moz-background-size: 300px auto;
+    -ms-background-size: 300px auto;
+    background-size: 300px auto;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+.home_nav a, .home_nav a:before {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.home_nav a:before {
+    content: '\00a0';
+    top: 0;
+    left: 0;
+}
+.home_nav span {
+    position: absolute;
+    width: 60px;
+    top: 50px;
+    left: -5px;
+}
+.home_nav p:nth-of-type(3n+1) {
+    left: 13%;
+}
+.home_nav p:nth-of-type(3n+2) {
+    left: 50%;
+}
+.home_nav p:nth-of-type(3n+3) {
+    left: 88%;
+}
+.home_nav p:nth-of-type(4), .home_nav p:nth-of-type(5), .home_nav p:nth-of-type(6) {
+    top: 86px;
+}
+.home_nav p:nth-of-type(1) a {
+    background-color: #59a3ff;
+/*     background-position: -50px 0; */
+}
+.home_nav p:nth-of-type(2) a {
+    background-color: #2ecc71;
+/*     background-position: -100px 0; */
+}
+.home_nav p:nth-of-type(3) a {
+    background-color: #2fc0f0;
+/*     background-position: 0 -50px; */
+}
+.home_nav p:nth-of-type(4) a {
+    background-color: #fe9126;
+/*     background-position: -50px -50px; */
+}
+.home_nav p:nth-of-type(5) a {
+    background-color: #ff6969;
+/*     background-position: -100px -50px; */
+}
+.home_nav p:nth-of-type(6) a {
+    background-color: #ffc000;
+/*     background-position: 0 -100px; */
+}
+.home_nav p:nth-of-type(1) a:before{
+    background: url(../img/wdjl.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 7px 7px;
+}
+.home_nav p:nth-of-type(2) a:before{
+    background: url(../img/wdxx.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 7px 7px;
+}
+.home_nav p:nth-of-type(3) a:before{
+    background: url(../img/tsjl.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 9px 7px;
+}
+.home_nav p:nth-of-type(4) a:before{
+    background: url(../img/fbls.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 7px 7px;
+}
+.home_nav p:nth-of-type(5) a:before{
+    background: url(../img/jlss.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 7px 7px;
+}
+.home_nav p:nth-of-type(6) a:before{
+    background: url(../img/zwss.png) no-repeat;
+    background-size: 35px 35px;
+    background-position: 7px 7px;
+}

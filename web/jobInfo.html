@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>工人棚</title>
+		<link rel="stylesheet" type="text/css" href="css/weui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	</head>
+	<style type="text/css">
+		.no-margin-top{
+			margin-top:0;
+		}
+		.no-margin-top:before{
+		    content: " ";
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    right: 0;
+		    height: 1px;
+		    border-top: 1px solid #D9D9D9;
+		    color: #D9D9D9;
+		    -webkit-transform-origin: 0 0;
+		    transform-origin: 0 0;
+		    -webkit-transform: scaleY(0.5);
+		    transform: scaleY(0.5);
+		    left: 15px;
+		}
+		.no-margin-top:after{
+			border-bottom: 0;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">职位详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="link-area" style="text-align: left;">
+				<span class="spliter" style="color: #1AAD19;">详情：</span>
+			</div>
+			<div class="weui-cells weui-cells_form">
+				<div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">发布时间:</label></div>
+			        <div class="weui-cell__bd" id="createTime">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cells no-margin-top">
+			    	<a class="weui-cell weui-cell_access" href="javascript:;">
+				        <div class="weui-cell__hd"><label class="weui-label">发布人:</label></div>
+				        <div class="weui-cell__bd" id="realName">
+				            张珊
+				        </div>
+			    	</a>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">班组:</label></div>
+			        <div class="weui-cell__bd" id="workType">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">价格:</label></div>
+			        <div class="weui-cell__bd" id="price">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">工作地点:</label></div>
+			        <div class="weui-cell__bd" id="address">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">联系方式:</label></div>
+			        <div class="weui-cell__bd" id="contact">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">工作时间:</label></div>
+			        <div class="weui-cell__bd" id="workTime">
+			            张珊
+			        </div>
+			    </div>
+			    <div class="weui-cell">
+			        <div class="weui-cell__hd"><label class="weui-label">备注:</label></div>
+			        <div class="weui-cell__bd" id="remark">
+			            张珊
+			        </div>
+			    </div>
+			</div>
+			<a href="javascript:;" class="weui-btn weui-btn_primary" id="submit" style="margin: 2rem .5rem;">投递简历</a>
+		</div>
+		<script src="js/jquery-1.9.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/weui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jobInfo.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
