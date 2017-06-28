@@ -28,7 +28,7 @@
                     if(data.code == 200){
                         $("#msg").text('welcome '+data.username + " ! your passowrd is "+data.password);
                     }else{
-                        $("#msg").text('login failed !');
+                        $("#msg").text(data.msg);
                     }
                 },
                 error:function(data){
