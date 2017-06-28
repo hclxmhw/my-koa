@@ -84,7 +84,7 @@
     display: block;
 }
 .home_nav a, .home_nav a:before, .search .search_but:after, .search_con .more span:after, .search_con .close, .qklink em, .lbox .nav:before, .Ls .rec:after, .Ls .link:after, .Bx .hot:after, .htj .more:after, #suspend .search_but:after {
-    background: url(http://img01.51jobcdn.com/im/mobile/m/home_icons_20161216.png) no-repeat;
+    background: url(../img/home_icons_20161216.png) no-repeat;
     -webkit-background-size: 300px auto;
     -moz-background-size: 300px auto;
     -ms-background-size: 300px auto;
