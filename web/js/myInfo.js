@@ -31,7 +31,7 @@ $(function(){
         },
         click: function(score, evt) {
         	$.ajax({
-        		url:"score/add.do",
+        		url:"score/add",
         		type:"post",
         		dataType:"json",
         		data:{
@@ -100,7 +100,7 @@ $(function(){
 function queryMyInfo(id){
 	loading = weui.loading('加载中');
 	$.ajax({
-		url:"user/select.do",
+		url:"user/select",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -109,20 +109,20 @@ function queryMyInfo(id){
 		success:function(data){
 			loading.hide();
 			if(data.code==200){
-				app.realName = data.rows.realName;
-				app.mobile = data.rows.mobile;
-				app.age = data.rows.age;
-				app.idCardNum = data.rows.idCardNum;
-				app.idCardFront = urlurl+"/grp"+data.rows.idCardFront;
-				app.idCardBack = urlurl+"/grp"+data.rows.idCardBack
-				app.scores = new Array(parseInt(data.rows.score == null ? "0" : data.rows.score ));
-//				$("#realName").text(data.rows.realName);
-//				$("#mobile").text(data.rows.mobile);
-//				$("#age").text(data.rows.age);
-//				$("#idCardNum").text(data.rows.idCardNum);
-//				$("#idCardFront").children("img")[0].src = "/grp"+data.rows.idCardFront;
-//				$("#idCardBack").children("img")[0].src = "/grp"+data.rows.idCardBack
-				localStorage.setItem(id+"info",JSON.stringify(data.rows));
+				app.realName = data.data[0].real_name;
+				app.mobile = data.data[0].mobile;
+				app.age = data.data[0].age;
+				app.idCardNum = data.data[0].id_card_num;
+				app.idCardFront = urlurl+"/grp"+data.data[0].id_card_front;
+				app.idCardBack = urlurl+"/grp"+data.data[0].id_card_back
+				app.scores = new Array(parseInt(data.data[0].score == null ? "0" : data.data[0].score ));
+//				$("#realName").text(data.data[0].realName);
+//				$("#mobile").text(data.data[0].mobile);
+//				$("#age").text(data.data[0].age);
+//				$("#idCardNum").text(data.data[0].idCardNum);
+//				$("#idCardFront").children("img")[0].src = "/grp"+data.data[0].idCardFront;
+//				$("#idCardBack").children("img")[0].src = "/grp"+data.data[0].idCardBack
+				localStorage.setItem(id+"info",JSON.stringify(data.data[0]));
 			}else{
 				weui.alert(data.message);
 			}

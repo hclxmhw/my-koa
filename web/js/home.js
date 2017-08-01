@@ -60,7 +60,7 @@ $(function(){
 function queryList(page){
 	loading = weui.loading('加载中');
 	$.ajax({
-		url:"msg/select.do",
+		url:"msg/select",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -72,14 +72,14 @@ function queryList(page){
 			if(data.code==200){
 				totalPage = data.total;
 				$(".listview").children("a").remove();
-				for (var i = 0; i < data.rows.length; i++) {
-					var a = '<a class="weui-cell weui-cell_access jobList" href="javascript:;" id="'+data.rows[i].id+'">'+
+				for (var i = 0; i < data.data.length; i++) {
+					var a = '<a class="weui-cell weui-cell_access jobList" href="javascript:;" id="'+data.data[i].id+'">'+
 								'<div class="weui-cell__bd" style="text-align: center;">'+
-									'<p>'+data.rows[i].workType+''+data.rows[i].msgType+'</p>'+
+									'<p>'+data.data[i].work_type+''+data.data[i].msg_type+'</p>'+
 								'</div>'+
 							'</a>'
 					$(".listview").append(a);
-					localStorage.setItem(data.rows[i].id,JSON.stringify(data.rows[i]));
+					localStorage.setItem(data.data[i].id,JSON.stringify(data.data[i]));
 				}
 	            
 			}else{

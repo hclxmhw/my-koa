@@ -4,7 +4,7 @@ var resBody = {
             data:"",
             message:""
         }
-var fn_login = async(ctx,next)=>{
+var fn_login = async(ctx,next) => {
     var
         username = ctx.request.body.mobile || "",
         password = ctx.request.body.loginPwd || "";
@@ -48,7 +48,81 @@ var fn_index = async(ctx,next) => {
     ctx.response.redirect('login.html');
 }
 
+var fn_msg_select = async(ctx,next) => {
+    var 
+        page = parseInt(ctx.request.body.page),
+        pageSize = parseInt(ctx.request.body.pageSize);
+    var obj = await entity.Msg.findAndCountAll({
+        limit:pageSize,
+        offset: pageSize * (page-1)
+    })
+    if(obj.rows.length>0){
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj.rows;
+        ctx.response.body = resBody;
+    }else{
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
+
+var fn_resume_select = async(ctx,next) => {
+    var id = ctx.request.body.id;
+    var obj = await entity.Resume.findAll({
+        where:{
+            user_id:id
+        }
+    })
+
+    if(obj.length>0){
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+
+}
+
+var fn_user_select = async(ctx,next) => {
+    var id = ctx.request.body.id;
+    var obj = await entity.User.findAll({
+        where:{
+            id:id
+        }
+    })
+
+    if(obj.length>0){
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        console.log('query.' + JSON.stringify(obj));
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+
+}
 module.exports = {
     'POST /login':fn_login,
-    'GET /':fn_index
+    'GET /':fn_index,
+    'POST /msg/select':fn_msg_select,
+    'POST /resume/select': fn_resume_select,
+    'POST /user/select': fn_user_select,
+    'POST /score/add': fn_score_add
 }
