@@ -118,6 +118,35 @@ var fn_user_select = async(ctx,next) => {
     }
 
 }
+
+var fn_score_add = async(ctx,next) => {
+    var req = ctx.request.body;
+    var user_id = req.userId;
+    var from_id = req.fromId;
+    var score = req.score;
+    var real_name = req.realName;
+    
+    var obj = await entity.sequelizeInstance.transaction(function(t){
+        return entity.Score.upsert({
+            user_id:user_id,
+            from_id:from_id,
+            score:score,
+            score_time:new Date()
+        },{ transaction: t})
+    })
+
+    if(obj == true){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
 module.exports = {
     'POST /login':fn_login,
     'GET /':fn_index,
