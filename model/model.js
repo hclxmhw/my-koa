@@ -111,10 +111,10 @@ var Resume_scan_history = sequelizeInstance.define('resume_scan_history',{
 
 var Score = sequelizeInstance.define('score_info',{
     id:{
-        type: Sequelize.STRING(32),
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        initialAutoIncrement:'1',
-        defaultValue:'1'
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     user_id: Sequelize.STRING(32),
     real_name: Sequelize.STRING(32),

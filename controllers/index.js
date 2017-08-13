@@ -126,16 +126,18 @@ var fn_score_add = async(ctx,next) => {
     var score = req.score;
     var real_name = req.realName;
     
-    var obj = await entity.sequelizeInstance.transaction(function(t){
-        return entity.Score.upsert({
+    try {
+        var obj = await entity.Score.create({
             user_id:user_id,
             from_id:from_id,
             score:score,
             score_time:new Date()
-        },{ transaction: t})
-    })
+        })
+    } catch (error) {
+        console.log(error);
+    }
 
-    if(obj == true){
+    if(obj != undefined || obj != null){
         resBody.code = "200";
         resBody.message = "成功";
         resBody.data = obj;
