@@ -42,7 +42,7 @@ $(function(){
 function queryList(id,page){
 	loading = weui.loading('加载中');
 	$.ajax({
-		url:"resume/scanHistoryList.do",
+		url:"resume/scanHistoryList",
 		type:"post",
 		dataType:"json",
 		data:{

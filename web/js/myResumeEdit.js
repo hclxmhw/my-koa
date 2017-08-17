@@ -6,16 +6,16 @@ $(function(){
 	if(info!=null){
 		info = JSON.parse(info);
 		$("#mobile").val(info.mobile == null ? "" : info.mobile);
-		$("#realName").val(info.realName == null ? "" : info.realName);
+		$("#realName").val(info.real_name == null ? "" : info.real_name);
 		$("#age").val(info.age == null ? "" : info.age);
-		$("#idCardNum").val(info.idCardNum == null ? "" : info.idCardNum);
+		$("#idCardNum").val(info.id_card_num == null ? "" : info.id_card_num);
 		$("#workType").removeClass("gray");
-		$("#workType").text(info.workType == null ? "" : info.workType);
+		$("#workType").text(info.work_type == null ? "" : info.work_type);
 		$("#certificate").val(info.certificate == null ? "" : info.certificate);
-		$("#workYear").val(info.workYear == null ? "" : info.workYear);
-		$("#workExp").val(info.workExp == null ? "" : info.workExp);
-		$("#expSalary").val(info.expSalary == null ? "" : info.expSalary);
-		$("#workAddress").val(info.workAddress == null ? "" : info.workAddress);
+		$("#workYear").val(info.work_year == null ? "" : info.work_year);
+		$("#workExp").val(info.work_exp == null ? "" : info.work_exp);
+		$("#expSalary").val(info.exp_salary == null ? "" : info.exp_salary);
+		$("#workAddress").val(info.work_address == null ? "" : info.work_address);
 		$("#remark").val(info.remark == null ? "" : info.remark);
 	}
 	
@@ -146,7 +146,7 @@ $(function(){
 		loading = weui.loading('加载中');
 		var id = localStorage.getItem("id")
 		$.ajax({
-			url:"resume/update.do",
+			url:"resume/update",
 			type:"post",
 			dataType:"json",
 			data:{
