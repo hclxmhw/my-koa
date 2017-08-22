@@ -1,5 +1,18 @@
 const fs = require('fs');
-
+const multer = require('koa-multer');//加载koa-multer模块  
+//文件上传  
+//配置  
+var storage = multer.diskStorage({  
+    //文件保存路径  
+    destination: function (req, file, cb) {  
+        cb(null, './uploads/')  
+    },  
+    //修改文件名称  
+    filename: function (req, file, cb) {  
+        var fileFormat = (file.originalname).split(".");  
+        cb(null,Date.now() + "." + fileFormat[fileFormat.length - 1]);  
+    }  
+})
 function addMapping(router,mapping){
     for(var url in mapping){
         if(url.startsWith('GET')){
@@ -10,6 +23,12 @@ function addMapping(router,mapping){
             var path = url.substring('5');
             router.post(path, mapping[url]);
             console.log(`register URL mapping : POST ${path}`);
+        }else if(url.startsWith('UPLOAD')){
+            var path = url.substring('7');
+            //加载配置  
+            var upload = multer({ storage: storage }); 
+            router.post(path, upload.single('file'), mapping[url]);
+            console.log(`register URL mapping : POST UPLOAD ${path}`);
         }else{
             console.log(`invalid URL : ${url}`);
         }

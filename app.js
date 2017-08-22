@@ -19,6 +19,8 @@ var app = new Koa();
 
 app.use(static(__dirname +'/web'));
 
+app.use(static(__dirname +'/uploads'));
+
 app.use(bodyParser());
 
 app.use(controller());

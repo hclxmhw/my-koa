@@ -113,8 +113,8 @@ function queryMyInfo(id){
 				app.mobile = data.data[0].mobile;
 				app.age = data.data[0].age;
 				app.idCardNum = data.data[0].id_card_num;
-				app.idCardFront = urlurl+"/grp"+data.data[0].id_card_front;
-				app.idCardBack = urlurl+"/grp"+data.data[0].id_card_back
+				app.idCardFront = urlurl+data.data[0].id_card_front.replace("uploads\\","/");
+				app.idCardBack = urlurl+data.data[0].id_card_back.replace("uploads\\","/");
 				app.scores = new Array(parseInt(data.data[0].score == null ? "0" : data.data[0].score ));
 //				$("#realName").text(data.data[0].realName);
 //				$("#mobile").text(data.data[0].mobile);

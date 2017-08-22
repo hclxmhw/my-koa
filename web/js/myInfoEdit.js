@@ -8,14 +8,14 @@ $(function(){
 	if(info!=null){
 		info = JSON.parse(info);
 		$("#mobile").val(info.mobile == null ? "" : info.mobile);
-		$("#realName").val(info.realName == null ? "" : info.realName);
+		$("#realName").val(info.real_name == null ? "" : info.real_name);
 		$("#age").val(info.age == null ? "" : info.age);
-		$("#idCardNum").val(info.idCardNum == null ? "" : info.idCardNum);
+		$("#idCardNum").val(info.id_card_num == null ? "" : info.id_card_num);
 		var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>';
-		$("#idCardFront")[0].dataset.path = info.idCardFront == null ? "" : info.idCardFront;
-		$("#idCardFront").append($(tmpl.replace('#url#', info.idCardFront == null ? "" : "/grp"+info.idCardFront)));
-		$("#idCardBack")[0].dataset.path = info.idCardBack == null ? "" : info.idCardBack;
-		$("#idCardBack").append($(tmpl.replace('#url#', info.idCardBack == null ? "" : "/grp"+info.idCardBack)));
+		$("#idCardFront")[0].dataset.path = info.id_card_front == null ? "" : info.id_card_front.replace("uploads\\","/");
+		$("#idCardFront").append($(tmpl.replace('#url#', info.id_card_front == null ? "" : info.id_card_front.replace("uploads\\","/"))));
+		$("#idCardBack")[0].dataset.path = info.id_card_back == null ? "" : info.id_card_back.replace("uploads\\","/");
+		$("#idCardBack").append($(tmpl.replace('#url#', info.id_card_back == null ? "" : info.id_card_back.replace("uploads\\","/"))));
 	}
 	
 	$(".mui-action-back").on("click",function(){
@@ -57,7 +57,7 @@ $(function(){
 		var id = localStorage.getItem("id");
 		loading = weui.loading('加载中');
 		$.ajax({
-			url:"user/update.do",
+			url:"user/update",
 			type:"post",
 			dataType:"json",
 			data:{
@@ -90,7 +90,7 @@ $(function(){
 	})
 	
 	weui.uploader('#uploader', {
-	   url: 'user/upload.do',
+	   url: 'user/upload',
 	   auto: true,
 	   type: 'file',
 	   fileVal: 'file',
@@ -130,7 +130,7 @@ $(function(){
 	   onSuccess: function (ret) {
 	       console.log(this, ret);
 	       // return true; // 阻止默认行为，不使用默认的成功态
-	       $("#idCardFront")[0].dataset.path = ret.rows;
+	       $("#idCardFront")[0].dataset.path = ret.data;
 	   },
 	   onError: function(err){
 	       console.log(this, err);
@@ -139,7 +139,7 @@ $(function(){
 	});
 	
 	weui.uploader('#uploader2', {
-	   url: 'user/upload.do',
+	   url: 'user/upload',
 	   auto: true,
 	   type: 'file',
 	   fileVal: 'file',
@@ -179,7 +179,7 @@ $(function(){
 	   onSuccess: function (ret) {
 	       console.log(this, ret);
 	       // return true; // 阻止默认行为，不使用默认的成功态
-	       $("#idCardBack")[0].dataset.path = ret.rows;
+	       $("#idCardBack")[0].dataset.path = ret.data;
 	   },
 	   onError: function(err){
 	       console.log(this, err);

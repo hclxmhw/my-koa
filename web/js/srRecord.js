@@ -97,7 +97,7 @@ $(function(){
 		loading = weui.loading('加载中');
 		var id = e.currentTarget.dataset.msgid;
 		$.ajax({
-			url:"msg/select.do",
+			url:"msg/select",
 			type:"post",
 			dataType:"json",
 			async:false,
@@ -109,18 +109,18 @@ $(function(){
 			success:function(data){
 				loading.hide();
 				if(data.code==200){
-					$("#createTime").text(dateFormat(data.rows[0].createTime));
-					$("#publicUserName").text(data.rows[0].realName);
+					$("#createTime").text(dateFormat(data.data[0].create_time));
+					$("#publicUserName").text(data.data[0].real_name);
 					$("#publicUserName").parents("a")[0].dataset.publicUserId = e.currentTarget.dataset.publicuserid;
 					$("#postUserName").text(e.currentTarget.dataset.postusername);
 					$("#postUserName").parents("a")[0].dataset.postUserId = e.currentTarget.dataset.postuserid;
-					$("#workType").text(data.rows[0].workType);
-					$("#address").text(data.rows[0].address);
-					$("#price").text(data.rows[0].price);
-					$("#contact").text(data.rows[0].contact);
-					$("#workTime").text(dateFormat(data.rows[0].workTime));
-					$("#postTime").text(e.currentTarget.dataset.posttime);
-					$("#remark").text(data.rows[0].remark == null ? "无" : data.rows[0].remark);
+					$("#workType").text(data.data[0].work_type);
+					$("#address").text(data.data[0].address);
+					$("#price").text(data.data[0].price);
+					$("#contact").text(data.data[0].contact);
+					$("#workTime").text(dateFormat(data.data[0].work_time));
+					$("#postTime").text(e.currentTarget.dataset.post_time);
+					$("#remark").text(data.data[0].remark == null ? "无" : data.data[0].remark);
 				}else{
 					weui.alert(data.message);
 				}
@@ -180,7 +180,7 @@ $(function(){
 function queryList(data){
 	loading = weui.loading('加载中');
 	$.ajax({
-		url:"mbi/list.do",
+		url:"mbi/list",
 		type:"post",
 		dataType:"json",
 		data:data,
@@ -189,29 +189,29 @@ function queryList(data){
 			if(data.code==200){
 				totalPage = data.total;
 				$(".listview").children("a").remove();
-				for (var i = 0; i < data.rows.length; i++) {
-					var a = '<a class="weui-cell weui-cell_access msgList" id="'+data.rows[i].id+'" data-msgId="'+data.rows[i].msgId+'" data-publicUserId="'+data.rows[i].publicUserId+'" data-postUserId="'+data.rows[i].postUserId+'" data-postUserName="'+data.rows[i].postUserName+'" data-postTime="'+data.rows[i].postTime+'" href="javascript:;">'+
+				for (var i = 0; i < data.data.length; i++) {
+					var a = '<a class="weui-cell weui-cell_access msgList" id="'+data.data[i].id+'" data-msgId="'+data.data[i].msg_id+'" data-publicUserId="'+data.data[i].public_user_id+'" data-postUserId="'+data.data[i].post_user_id+'" data-postUserName="'+data.data[i].post_user_name+'" data-postTime="'+data.data[i].post_time+'" href="javascript:;">'+
 				                '<div class="weui-cell__bd" style="text-align: center;">'+
 				                    '<div class="weui-cell__bd" style="text-align: center;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;">'+
 					                    '<div class="weui-cell__bd" style="text-align: center;">'+
-						                    '<p>班组：'+data.rows[i].workType+'</p>'+
+						                    '<p>班组：'+data.data[i].work_type+'</p>'+
 						                '</div>'+
 						                '<div class="weui-cell__bd" style="text-align: center;">'+
-						                    '<p>发布人：'+data.rows[i].publicUserName+'</p>'+
+						                    '<p>发布人：'+data.data[i].public_user_name+'</p>'+
 						                '</div>'+
 					                '</div>'+
 					                '<div class="weui-cell__bd" style="text-align: center;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;">'+
 					                    '<div class="weui-cell__bd" style="text-align: center;">'+
-						                    '<p>投递人：'+data.rows[i].postUserName+'</p>'+
+						                    '<p>投递人：'+data.data[i].post_user_name+'</p>'+
 						                '</div>'+
 						                '<div class="weui-cell__bd" style="text-align: center;">'+
-						                    '<p>时间：'+dateFormatYMD(data.rows[i].postTime)+'</p>'+
+						                    '<p>时间：'+dateFormatYMD(data.data[i].post_time)+'</p>'+
 						                '</div>'+
 					                '</div>'+
 				                '</div>'+
 				            '</a>'
 					$(".listview").append(a);
-					localStorage.setItem(data.rows[i].id+"record",JSON.stringify(data.rows[i]));
+					localStorage.setItem(data.data[i].id+"record",JSON.stringify(data.data[i]));
 				}
 	            
 			}else{

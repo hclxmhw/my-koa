@@ -34,6 +34,9 @@ function queryMyResume(id){
 			loading.hide();
 			if(data.code==200){
 				$("#realName").text(data.data[0].real_name);
+				$("#mobile").text(data.data[0].mobile);
+				$("#age").text(data.data[0].age);
+				$("#idCardNum").text(data.data[0].id_card_num);
 				$("#expSalary").text(data.data[0].exp_salary);
 				$("#remark").text(data.data[0].remark == null ? "" : data.data[0].remark);
 				$("#workAddress").text(data.data[0].work_address);

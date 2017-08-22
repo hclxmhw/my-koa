@@ -37,7 +37,7 @@ $(function(){
 		loading = weui.loading('加载中');
 		var id = localStorage.getItem("id");
 		$.ajax({
-			url:"user/updatePwd.do",
+			url:"user/updatePwd",
 			type:"post",
 			dataType:"json",
 			data:{

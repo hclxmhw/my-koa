@@ -1,4 +1,5 @@
 var entity = require('../model/model')
+var fs = require("fs");
 var resBody = {
             code:"",
             data:"",
@@ -211,7 +212,7 @@ var fn_user_updatePwd = async(ctx,next) => {
     var body = ctx.request.body;
     var obj = await entity.User.findAll({
         where:{
-            mobile:body.mobile,
+            id:body.id,
             login_pwd:body.loginPwd
         }
     })
@@ -219,11 +220,15 @@ var fn_user_updatePwd = async(ctx,next) => {
     if(obj.length>0){
         var obj1 = await entity.User.update({
            login_pwd:body.newPwd
+        },{
+            where:{
+                id:body.id
+            }
         })
         if(obj1.length>0){
             resBody.code = "200";
             resBody.message = "成功";
-            resBody.data = obj;
+            resBody.data = obj1;
             ctx.response.body = resBody;
         }else{
             resBody.code = "500";
@@ -231,6 +236,74 @@ var fn_user_updatePwd = async(ctx,next) => {
             resBody.data = null;
             ctx.response.body = resBody;
         }
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
+
+var fn_user_update = async(ctx,next) => {
+    var body = ctx.request.body;
+    var obj = await entity.User.update({
+        mobile:body.mobile,
+        real_name:body.realName,
+        age:body.age,
+        id_card_num:body.idCardNum,
+        id_card_front:body.idCardFront,
+        id_card_back:body.idCardBack
+    },{
+        where:{
+            id:body.id
+        }
+    })
+    if(obj.length>0){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
+
+var fn_user_upload = async(ctx,next)=>{
+    var path = ctx.req.file.path;
+    resBody.code = "200";
+    resBody.message = "成功";
+    resBody.data = path;
+    ctx.response.body = resBody;
+}
+
+var fn_mbi_list = async(ctx,next) =>{
+    var body = ctx.request.body,
+        page = parseInt(body.page),
+        pageSize = parseInt(body.pageSize);
+    var param = {}
+    if(body.workType != null){
+        param.work_type = {
+            $like: '%'+body.workType+'%'
+        }
+    }
+    if(body.postTime != null){
+        param.post_time = {
+            $lte:body.postTime
+        }
+    }
+    var obj = await entity.MsgBePost.findAndCountAll({
+        where:param,
+        limit:pageSize,
+        offset: pageSize * (page-1)
+    })
+    if(obj.rows.length>=0){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj.rows;
+        ctx.response.body = resBody;
     }else{
         resBody.code = "500";
         resBody.message = "失败";
@@ -247,5 +320,8 @@ module.exports = {
     'POST /score/add': fn_score_add,
     'POST /resume/scanHistoryList': fn_resume_scanHistoryList,
     'POST /resume/update': fn_resume_update,
-    'POST /user/updatePwd': fn_user_updatePwd
+    'POST /user/updatePwd': fn_user_updatePwd,
+    'POST /user/update': fn_user_update,
+    'UPLOAD /user/upload': fn_user_upload,
+    'POST /mbi/list': fn_mbi_list
 }
