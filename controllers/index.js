@@ -54,6 +54,9 @@ var fn_msg_select = async(ctx,next) => {
         page = parseInt(ctx.request.body.page),
         pageSize = parseInt(ctx.request.body.pageSize);
     var obj = await entity.Msg.findAndCountAll({
+        include:[{
+            model: entity.MsgBePost
+        }],
         limit:pageSize,
         offset: pageSize * (page-1)
     })

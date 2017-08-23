@@ -82,7 +82,13 @@ var Msg_be_post_info = sequelizeInstance.define('msg_be_post_info',{
         type: Sequelize.STRING(32),
         primaryKey: true
     },
-    msg_id: Sequelize.STRING(32),
+    msg_id: {
+        type:Sequelize.STRING(32),
+        references: {
+            model: 'Msg',
+            key: 'id'
+        },
+    },
     post_user_id: Sequelize.STRING(32),
     post_user_name: Sequelize.STRING(32),
     public_user_id: Sequelize.STRING(32),
@@ -153,6 +159,8 @@ var Sms_valid = sequelizeInstance.define('sms_valid',{
 //     // });
 // }
 
+Msg.hasOne(Msg_be_post_info,{foreignKey:'msg_id',as:'MsgId'})
+sequelizeInstance.sync();
 module.exports = {
     'sequelizeInstance':sequelizeInstance,
     'User': User,
