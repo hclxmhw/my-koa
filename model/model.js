@@ -32,8 +32,10 @@ var User = sequelizeInstance.define('user_info', {
 
 var Msg = sequelizeInstance.define('msg_info',{
     id:{
-        type: Sequelize.STRING(32),
-        primaryKey: true
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     user_id: Sequelize.STRING(32),
     real_name: Sequelize.STRING(32),
@@ -54,7 +56,7 @@ var Msg = sequelizeInstance.define('msg_info',{
 var Resume = sequelizeInstance.define('resume_info',{
     id:{
         type: Sequelize.STRING(32),
-        primaryKey: true
+        primaryKey: true,
     },
     user_id: Sequelize.STRING(32),
     real_name: Sequelize.STRING(32),
@@ -79,16 +81,12 @@ var Resume = sequelizeInstance.define('resume_info',{
 
 var Msg_be_post_info = sequelizeInstance.define('msg_be_post_info',{
     id:{
-        type: Sequelize.STRING(32),
-        primaryKey: true
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
-    msg_id: {
-        type:Sequelize.STRING(32),
-        references: {
-            model: 'Msg',
-            key: 'id'
-        },
-    },
+    msg_id:Sequelize.STRING(32),
     post_user_id: Sequelize.STRING(32),
     post_user_name: Sequelize.STRING(32),
     public_user_id: Sequelize.STRING(32),
@@ -159,7 +157,6 @@ var Sms_valid = sequelizeInstance.define('sms_valid',{
 //     // });
 // }
 
-Msg.hasOne(Msg_be_post_info,{foreignKey:'msg_id',as:'MsgId'})
 sequelizeInstance.sync();
 module.exports = {
     'sequelizeInstance':sequelizeInstance,

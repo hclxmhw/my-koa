@@ -8,13 +8,13 @@ $(function(){
 	}
 	info = JSON.parse(info);
 	
-	$("#createTime").text(dateFormat(info.createTime));
-	$("#realName").text(info.realName);
-	$("#workType").text(info.workType);
+	$("#createTime").text(dateFormat(info.create_time));
+	$("#realName").text(info.real_name);
+	$("#workType").text(info.work_type);
 	$("#address").text(info.address);
 	$("#price").text(info.price);
 	$("#contact").text(info.contact);
-	$("#workTime").text(dateFormat(info.workTime));
+	$("#workTime").text(dateFormat(info.work_time));
 	$("#remark").text(info.remark == null ? "无" : info.remark);
 	
 	
@@ -28,7 +28,7 @@ $(function(){
 		var postUserName = localStorage.getItem("realName");
 		loading = weui.loading('加载中');
 		$.ajax({
-			url:"mbi/add.do",
+			url:"mbi/add",
 			type:"post",
 			dataType:"json",
 			data:{

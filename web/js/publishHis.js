@@ -42,7 +42,7 @@ $(function(){
 function queryList(id,page){
 	loading = weui.loading('加载中');
 	$.ajax({
-		url:"msg/select.do",
+		url:"msg/select",
 		type:"post",
 		dataType:"json",
 		data:{
@@ -54,20 +54,20 @@ function queryList(id,page){
 			loading.hide();
 			if(data.code==200){
 				totalPage = data.total;
-				for (var i = 0; i < data.rows.length; i++) {
-					var a = '<a class="weui-cell weui-cell_access jobList" id="'+data.rows[i].id+'" href="javascript:;">'+
+				for (var i = 0; i < data.data.length; i++) {
+					var a = '<a class="weui-cell weui-cell_access jobList" id="'+data.data[i].id+'" href="javascript:;">'+
 				                '<div class="weui-cell__bd" style="text-align: center;">'+
-				                    '<p>'+data.rows[i].workType+'</p>'+
+				                    '<p>'+data.data[i].work_type+'</p>'+
 				                '</div>'+
 				                '<div class="weui-cell__bd" style="text-align: center;">'+
-				                    '<p>'+data.rows[i].address+'</p>'+
+				                    '<p>'+data.data[i].address+'</p>'+
 				                '</div>'+
 				                '<div class="weui-cell__bd" style="text-align: center;">'+
-				                    '<p>'+dateFormatYMD(data.rows[i].createTime)+'</p>'+
+				                    '<p>'+dateFormatYMD(data.data[i].create_time)+'</p>'+
 				                '</div>'+
 				            '</a>'
 					$(".listview").append(a);
-					localStorage.setItem(data.rows[i].id,JSON.stringify(data.rows[i]));
+					localStorage.setItem(data.data[i].id,JSON.stringify(data.data[i]));
 				}
 	            
 			}else{

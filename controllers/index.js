@@ -50,16 +50,64 @@ var fn_index = async(ctx,next) => {
 }
 
 var fn_msg_select = async(ctx,next) => {
-    var 
+    var body = ctx.request.body,
         page = parseInt(ctx.request.body.page),
-        pageSize = parseInt(ctx.request.body.pageSize);
-    var obj = await entity.Msg.findAndCountAll({
-        include:[{
-            model: entity.MsgBePost
-        }],
-        limit:pageSize,
-        offset: pageSize * (page-1)
-    })
+        pageSize = parseInt(ctx.request.body.pageSize),
+        id = body.id;
+    var obj = null;
+    if(id != null){
+        var param = {
+            user_id:id
+        };
+        if(body.workType != null){
+            param.work_type = {
+                $like: '%'+body.workType+'%'
+            }
+        }
+        if(body.createTime != null){
+            param.create_time = {
+                $lte:body.createTime
+            }
+        }
+        obj = await entity.Msg.findAndCountAll({
+            include:[{
+                association: entity.Msg.hasOne(entity.MsgBePost, {foreignKey:'msg_id', as:'msgId'}),
+            }],
+            where:param,
+            limit:pageSize,
+            offset: pageSize * (page-1)
+        })
+    }else{
+        var param = {};
+        if(body.workType != null){
+            param.work_type = {
+                $like: '%'+body.workType+'%'
+            }
+        }
+        if(body.createTime != null){
+            param.create_time = {
+                $lte:body.createTime
+            }
+        }
+        if(param.work_type != undefined || param.create_time != undefined){
+            obj = await entity.Msg.findAndCountAll({
+                include:[{
+                    association: entity.Msg.hasOne(entity.MsgBePost, {foreignKey:'msg_id', as:'msgId'})
+                }],
+                where:param,
+                limit:pageSize,
+                offset: pageSize * (page-1)
+            })
+        }else{
+            obj = await entity.Msg.findAndCountAll({
+                include:[{
+                    association: entity.Msg.hasOne(entity.MsgBePost, {foreignKey:'msg_id', as:'msgId'})
+                }],
+                limit:pageSize,
+                offset: pageSize * (page-1)
+            })
+        }
+    }
     if(obj.rows.length>0){
         console.log('query.' + JSON.stringify(obj));
         resBody.code = "200";
@@ -314,6 +362,93 @@ var fn_mbi_list = async(ctx,next) =>{
         ctx.response.body = resBody;
     }
 }
+
+var fn_msg_add = async(ctx,next)=>{
+    var body = ctx.request.body;
+    var obj = await entity.Msg.create({
+        user_id: body.id,
+        real_name: body.realName,
+        work_type: body.workType,
+        msg_type: body.msgType,
+        address: body.address,
+        price: body.price,
+        contact: body.contact,
+        work_time: body.workTime,
+        remark: body.remark,
+        create_time: new Date(),
+        modify_time: new Date()
+    })
+    if(obj != undefined || obj != null){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
+
+var fn_resume_list = async(ctx,next)=>{
+    var body = ctx.request.body,
+        page = parseInt(body.page),
+        pageSize = parseInt(body.pageSize);
+    var param = {};
+    if(body.workType != null){
+        param.work_type = {
+            $like: '%'+body.workType+'%'
+        }
+    }
+    if(body.createTime != null){
+        param.create_time = {
+            $lte:body.createTime
+        }
+    }
+    var obj = await entity.Resume.findAndCountAll({
+        where:param,
+        limit:pageSize,
+        offset: pageSize * (page-1)
+    })
+    if(obj.rows.length>=0){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj.rows;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+}
+
+var fn_mbi_add = async(ctx,next)=>{
+    var body = ctx.request.body;
+    var obj = await entity.MsgBePost.create({
+        msg_id:body.msgId,
+        post_user_id: body.postUserId,
+        post_user_name: body.postUserName,
+        public_user_id: body.publicUserId,
+        public_user_name: body.publicUserName,
+        post_time: new Date(),
+        work_type: body.workType
+    })
+
+    if(obj != undefined || obj != null){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+
+}
 module.exports = {
     'POST /login':fn_login,
     'GET /':fn_index,
@@ -326,5 +461,8 @@ module.exports = {
     'POST /user/updatePwd': fn_user_updatePwd,
     'POST /user/update': fn_user_update,
     'UPLOAD /user/upload': fn_user_upload,
-    'POST /mbi/list': fn_mbi_list
+    'POST /mbi/list': fn_mbi_list,
+    'POST /msg/add': fn_msg_add,
+    'POST /resume/list': fn_resume_list,
+    'POST /mbi/add': fn_mbi_add
 }

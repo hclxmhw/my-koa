@@ -35,13 +35,15 @@ $(function(){
 		}
 		
 		var id = localStorage.getItem("id");
+		var realName = localStorage.getItem("realName");
 		loading = weui.loading('加载中');
 		$.ajax({
-			url:"msg/add.do",
+			url:"msg/add",
 			type:"post",
 			dataType:"json",
 			data:{
 				id:id,
+				realName:realName,
 				msgType:msgType,
 				workType:workType,
 				price:price,

@@ -119,7 +119,7 @@ $(function(){
 					$("#price").text(data.data[0].price);
 					$("#contact").text(data.data[0].contact);
 					$("#workTime").text(dateFormat(data.data[0].work_time));
-					$("#postTime").text(e.currentTarget.dataset.post_time);
+					$("#postTime").text(e.currentTarget.dataset.posttime);
 					$("#remark").text(data.data[0].remark == null ? "无" : data.data[0].remark);
 				}else{
 					weui.alert(data.message);
@@ -190,7 +190,7 @@ function queryList(data){
 				totalPage = data.total;
 				$(".listview").children("a").remove();
 				for (var i = 0; i < data.data.length; i++) {
-					var a = '<a class="weui-cell weui-cell_access msgList" id="'+data.data[i].id+'" data-msgId="'+data.data[i].msg_id+'" data-publicUserId="'+data.data[i].public_user_id+'" data-postUserId="'+data.data[i].post_user_id+'" data-postUserName="'+data.data[i].post_user_name+'" data-postTime="'+data.data[i].post_time+'" href="javascript:;">'+
+					var a = '<a class="weui-cell weui-cell_access msgList" id="'+data.data[i].id+'" data-msgId="'+data.data[i].msg_id+'" data-publicUserId="'+data.data[i].public_user_id+'" data-postUserId="'+data.data[i].post_user_id+'" data-postUserName="'+data.data[i].post_user_name+'" data-postTime="'+dateFormatYMD(data.data[i].post_time)+'" href="javascript:;">'+
 				                '<div class="weui-cell__bd" style="text-align: center;">'+
 				                    '<div class="weui-cell__bd" style="text-align: center;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;">'+
 					                    '<div class="weui-cell__bd" style="text-align: center;">'+
