@@ -449,6 +449,30 @@ var fn_mbi_add = async(ctx,next)=>{
     }
 
 }
+
+var fn_user_register = async(ctx,next)=>{
+    var body = ctx.request.body;
+    var obj = await entity.User.create({
+        user_type: body.userType,
+        login_pwd: body.loginPwd,
+        mobile: body.mobile,
+        create_time: Sequelize.DATE,
+        modify_time: Sequelize.DATE
+    })
+
+    if(obj != undefined || obj != null){
+        resBody.code = "200";
+        resBody.message = "成功";
+        resBody.data = obj;
+        ctx.response.body = resBody;
+    }else{
+        resBody.code = "500";
+        resBody.message = "失败";
+        resBody.data = null;
+        ctx.response.body = resBody;
+    }
+
+}
 module.exports = {
     'POST /login':fn_login,
     'GET /':fn_index,
@@ -464,5 +488,7 @@ module.exports = {
     'POST /mbi/list': fn_mbi_list,
     'POST /msg/add': fn_msg_add,
     'POST /resume/list': fn_resume_list,
-    'POST /mbi/add': fn_mbi_add
+    'POST /mbi/add': fn_mbi_add,
+    'POST /user/register': fn_user_register,
+    'POST /user/sms': fn_user_sms
 }

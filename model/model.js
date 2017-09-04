@@ -11,8 +11,11 @@ var sequelizeInstance = new Sequelize(config.database, config.username, config.p
 })
 var User = sequelizeInstance.define('user_info', {
     id: {
-        type: Sequelize.STRING(32),
-        primaryKey: true
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        unique:true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     user_type: Sequelize.STRING(2),
     login_pwd: Sequelize.STRING(32),
@@ -34,6 +37,7 @@ var Msg = sequelizeInstance.define('msg_info',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
+        unique:true,
         autoIncrement:true,
         initialAutoIncrement:1
     },
@@ -55,8 +59,11 @@ var Msg = sequelizeInstance.define('msg_info',{
 
 var Resume = sequelizeInstance.define('resume_info',{
     id:{
-        type: Sequelize.STRING(32),
+        type: Sequelize.INTEGER,
         primaryKey: true,
+        unique:true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     user_id: Sequelize.STRING(32),
     real_name: Sequelize.STRING(32),
@@ -83,6 +90,7 @@ var Msg_be_post_info = sequelizeInstance.define('msg_be_post_info',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
+        unique:true,
         autoIncrement:true,
         initialAutoIncrement:1
     },
@@ -100,8 +108,11 @@ var Msg_be_post_info = sequelizeInstance.define('msg_be_post_info',{
 
 var Resume_scan_history = sequelizeInstance.define('resume_scan_history',{
     id:{
-        type: Sequelize.STRING(32),
-        primaryKey: true
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        unique:true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     scan_name: Sequelize.STRING(32),
     work_type: Sequelize.STRING(32),
@@ -117,6 +128,7 @@ var Score = sequelizeInstance.define('score_info',{
     id:{
         type: Sequelize.INTEGER,
         primaryKey: true,
+        unique:true,
         autoIncrement:true,
         initialAutoIncrement:1
     },
@@ -132,8 +144,11 @@ var Score = sequelizeInstance.define('score_info',{
 
 var Sms_valid = sequelizeInstance.define('sms_valid',{
     id:{
-        type: Sequelize.STRING(32),
-        primaryKey: true
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        unique:true,
+        autoIncrement:true,
+        initialAutoIncrement:1
     },
     mobile: Sequelize.STRING(32),
     valid_code: Sequelize.STRING(6),
